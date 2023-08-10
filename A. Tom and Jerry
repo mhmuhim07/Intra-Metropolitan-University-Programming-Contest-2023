@@ -16,7 +16,20 @@ int dx[] = {1,-1,0,0,-1,-1,1,1};
 int dy[] = {0,0,1,-1,-1,1,1,-1};
 
 void solve(){
-    cout<<"Happy Coding - IMUPC 2023!"<<endl;
+    ll a,b;
+    cin>>a>>b;
+    ll n;
+    for(ll i = a;i<=b;i++){
+        if(i%2==0){
+            n=i;
+            break;
+        }
+    }
+    ll x = b/2;
+    ll e = x - ((a-1)/2);
+    //cout<<n<<" "<<e<<endl;
+    ll ans = (e*((2*n)+((e-1)*2)))/2;
+    cout<<ans<<endl;
 }
 int main()
 {
@@ -24,7 +37,7 @@ int main()
     fast;
     
     int t=1;
-    //cin >> t;
+    cin >> t;
     while(t--)
     {
         solve();
