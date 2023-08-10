@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+const int N=1e5+7;
+int bit[N];
+int n;
+void update(int i ,int x){
+    for(int j = i;j<=n;j+=(j&(-j))){
+        bit[j]+=x;
+    }
+}
+int sum(int i){
+    int ans =0;
+    for(int j = i;j>0;j-=(j&(-j))){
+        ans+=bit[j];
+    }
+    return ans;
+}
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--){
+    int q;
+    cin>>n>>q;
+    int a[n+1];
+    for(int i =1;i<=n;i++){
+        cin>>a[i];
+        update(i,a[i]);
+    }
+    while(q--){
+        int aa;
+        cin>>aa;
+        if(aa==1){
+            int i,v;
+            cin>>i>>v;
+            int x = v-a[i];
+            update(i,x);
+            a[i]=v;
+        }
+        else{
+            int l,r,s;
+            cin>>l>>r>>s;
+            int ss = sum(r)-sum(l-1);
+            if(ss==s)cout<<"YES";
+            else cout<<"NO";
+            cout<<endl;
+        }
+    }
+    memset(bit,0,sizeof(bit));
+    
+    }
+
+    return 0;
+}
