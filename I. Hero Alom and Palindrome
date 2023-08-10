@@ -1,0 +1,85 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define yes cout<<"Yes"<<endl
+#define no cout<<"NO"<<endl
+#define srt(v) sort(v.begin(),v.end())
+#define rsrt(v) sort(v.rbegin(),v.rend())
+#define ll long long
+#define pb push_back
+#define endl '\n'
+#define ff first
+#define ss second
+#define fast ios_base::sync_with_stdio(false);cin.tie(0),cout.tie(0);
+
+int dx[] = {1,-1,0,0,-1,-1,1,1};
+int dy[] = {0,0,1,-1,-1,1,1,-1};
+
+void solve() {
+    int qq;
+    cin>>qq;
+    string s,tm;
+    
+    cin>>s;
+    tm=s;
+    //cout<<qq<<endl;
+    reverse(tm.begin(),tm.end());
+    if(tm==s) {
+        //cout<<s<<endl;
+        cout<<"Palindrome already"<<endl;
+        cout<<endl;
+        return;
+    }
+    int n=s.size();
+    map<char,int>m;
+    for(int i =0; i<n; i++) {
+        m[s[i]]++;
+    }
+    int c=0;
+    char x;
+    for(auto u:m) {
+        if(u.ss&1){
+            c++;
+            x=u.ff;
+        }
+    }
+    if(n%2==0&&c!=0){
+        cout<<"Not possible"<<endl<<endl;
+        return;
+    }
+    if(n&1 &&(c>1 or c==0)){
+        cout<<"Not possible"<<endl<<endl;
+        return;
+    }
+    yes;
+    string a="",b="";
+    for(auto u:m){
+        int c = u.ss;
+        char x = u.ff;
+        if(c&1)c--;
+        while(c>0){
+            if(c%2==0)a+=x;
+            else b+=x;
+            c--;
+        }
+    }
+    if(n&1)a+=x;
+    reverse(b.begin(),b.end());
+    cout<<a+b<<endl<<endl;
+    
+    
+}
+int main()
+{
+
+    fast;
+
+    int t=1;
+    cin >> t;
+    while(t--)
+    {
+        solve();
+    }
+
+    return 0;
+}
